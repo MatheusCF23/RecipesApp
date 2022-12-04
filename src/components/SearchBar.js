@@ -1,8 +1,25 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import searchDrinksFetcher from '../helpers/searchDrinksFetcher';
+import searchMealFetcher from '../helpers/searchMealFetcher';
 
 function SearchBar() {
   const [checkedRadio, setCheckedRadio] = useState('');
   const [query, setQuery] = useState('');
+  const history = useHistory();
+
+  function handleSearch(search, radioType) {
+    switch (history.location.pathname) {
+    case '/meals':
+      return searchMealFetcher(search, radioType);
+
+    case '/drinks':
+      return searchDrinksFetcher(search, radioType);
+
+    default:
+      break;
+    }
+  }
 
   return (
     <form>
@@ -64,6 +81,7 @@ function SearchBar() {
         type="button"
         id="exec-search-btn"
         data-testid="exec-search-btn"
+        onClick={ () => handleSearch(query, checkedRadio) }
       >
         Buscar
       </button>

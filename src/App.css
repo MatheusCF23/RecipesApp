@@ -2,7 +2,6 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  position: fixed;
   top: 0;
   width: 100%;
 }
@@ -14,6 +13,5 @@
   height: 100px;
   justify-content: center;
   line-height: 100px;
-  position: fixed;
   width: 100%;
 }

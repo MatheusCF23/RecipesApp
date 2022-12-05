@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const history = useHistory();
 
   function validateEmail() {
@@ -16,8 +17,9 @@ export default function Login() {
     return password.length > passwordMinLength;
   }
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
+
     localStorage.setItem('user', JSON.stringify({ email }));
     return history.push('/meals');
   }

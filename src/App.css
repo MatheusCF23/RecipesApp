@@ -13,5 +13,6 @@
   height: 100px;
   justify-content: center;
   line-height: 100px;
+  position: fixed;
   width: 100%;
 }

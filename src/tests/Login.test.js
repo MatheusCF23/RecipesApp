@@ -1,13 +1,14 @@
 import { expect, test } from '@jest/globals';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
+import { AppProvider } from '../context/AppContext';
 import renderWithRouter from '../helpers/renderWithRouter';
 import Login from '../pages/Login';
 
 describe('Testes da tela de login', () => {
-  beforeEach(() => render(<Login />));
+  beforeEach(() => renderWithRouter(<AppProvider><Login /></AppProvider>));
   afterEach(cleanup);
 
   test('Testa se há dois inputs', () => {
@@ -51,7 +52,7 @@ describe('Testes da tela de login', () => {
 });
 
 test('Verifica se ao preencher tudo corretamente, o usuário é redirecionado a página meals', () => {
-  const { history } = renderWithRouter(<App />);
+  const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
   const button = screen.getByRole('button', { name: 'Enter' });
   const inputEmail = screen.getByLabelText('Email:');
   const inputPassword = screen.getByLabelText('Senha:');

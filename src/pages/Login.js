@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import saveEmail from '../redux/actions';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-  const dispatch = useDispatch();
 
   function validateEmail() {
     const validation = /\S+@\S+\.\S+/;
@@ -21,7 +18,6 @@ export default function Login() {
 
   function handleLogin(event) {
     event.preventDefault();
-    dispatch(saveEmail(email));
     localStorage.setItem('user', JSON.stringify({ email }));
     return history.push('/meals');
   }

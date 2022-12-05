@@ -1,25 +1,19 @@
-import apiResultManager from './apiResultManager';
-
-export default function searchMealFetcher(search, typeOfSearch) {
+export default async function searchMealFetcher(search, typeOfSearch) {
+  let response = {};
+  let data = [];
   switch (typeOfSearch) {
   case 'recipeIngredient':
-    return fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`)
-      .then((r) => r.json())
-      .then((d) => apiResultManager(d.meals));
-
+    response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`);
+    data = await response.json();
+    return data.meals;
   case 'recipeName':
-    return fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
-      .then((r) => r.json())
-      .then((d) => apiResultManager(d.meals));
-
+    response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
+    data = await response.json();
+    return data.meals;
   case 'recipeFirstLetter':
-    if (search.length > 1) {
-      return global.alert('Your search must have only 1 (one) character');
-    }
-    return fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${search}`)
-      .then((r) => r.json())
-      .then((d) => apiResultManager(d.meals));
-
+    response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${search}`);
+    data = await response.json();
+    return data.meals;
   default:
     break;
   }

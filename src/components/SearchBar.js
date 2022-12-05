@@ -1,20 +1,46 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 import searchDrinksFetcher from '../helpers/searchDrinksFetcher';
 import searchMealFetcher from '../helpers/searchMealFetcher';
 
 function SearchBar() {
-  const [checkedRadio, setCheckedRadio] = useState('');
+  const [checkedRadio, setCheckedRadio] = useState('recipeIngredient');
   const [query, setQuery] = useState('');
   const history = useHistory();
+  const { setAPI } = useContext(AppContext);
 
-  function handleSearch(search, radioType) {
+  async function handleSearch(search, radioType) {
+    let APIresponse = [];
+
+    if (radioType === 'recipeFirstLetter' && search.length > 1) {
+      return global.alert('Your search must have only 1 (one) character');
+    }
+
     switch (history.location.pathname) {
     case '/meals':
-      return searchMealFetcher(search, radioType);
+      APIresponse = await searchMealFetcher(search, radioType);
+
+      if (APIresponse === null || APIresponse === undefined) {
+        return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      }
+      if (APIresponse.length === 1) {
+        return history.push(`/meals/${APIresponse[0].idMeal}`);
+      }
+
+      return setAPI(APIresponse);
 
     case '/drinks':
-      return searchDrinksFetcher(search, radioType);
+      APIresponse = await searchDrinksFetcher(search, radioType);
+
+      if (APIresponse === null || APIresponse === undefined) {
+        return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      }
+      if (APIresponse.length === 1) {
+        return history.push(`/drinks/${APIresponse[0].idDrink}`);
+      }
+
+      return setAPI(APIresponse);
 
     default:
       break;

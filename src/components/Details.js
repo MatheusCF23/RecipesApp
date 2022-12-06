@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import recipeListItems from '../helpers/recipeListItems';
 import youtubeManager from '../helpers/youtubeManager';
 
 export default function Details(props) {
@@ -22,10 +23,13 @@ export default function Details(props) {
         <h3
           data-testid="recipe-category"
         >
-          {recipe.strCategory}
+          {recipe.strAlcoholic}
         </h3>
 
-        <ul />
+        <ul>
+          {recipeListItems(recipe)}
+        </ul>
+
         <div>
           <h4> Instruções </h4>
           <span
@@ -60,13 +64,14 @@ export default function Details(props) {
         </h3>
 
         <ul>
-          {}
+          {recipeListItems(recipe)}
         </ul>
 
         <div>
           <iframe
             title="Instructions video"
             src={ video }
+            data-testid="video"
           />
           <h4> Instruções </h4>
           <span
@@ -83,6 +88,7 @@ export default function Details(props) {
 
 Details.propTypes = {
   recipe: PropTypes.shape({
+    strAlcoholic: PropTypes.string,
     strCategory: PropTypes.string,
     strDrink: PropTypes.string,
     strDrinkThumb: PropTypes.string,

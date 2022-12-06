@@ -1,13 +1,25 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import recipeListItems from '../helpers/recipeListItems';
 import youtubeManager from '../helpers/youtubeManager';
+import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+
+const copy = require('clipboard-copy');
 
 export default function Details(props) {
   const history = useHistory();
+  const [copied, setCopied] = useState(false);
   const { recipe } = props;
+  console.log(window.location.href);
 
-  if (history.location.pathname.includes('/drinks')) {
+  function copyToClipboard() {
+    copy(window.location.href);
+    return setCopied(true);
+  }
+
+  if (history.location.pathname.includes(`/drinks/${recipe.idDrink}`)) {
     return (
       <>
         <button
@@ -17,6 +29,23 @@ export default function Details(props) {
           Voltar
 
         </button>
+
+        {copied && (<p> Link copied! </p>)}
+
+        <input
+          type="image"
+          src={ shareIcon }
+          alt="Compartilhar"
+          data-testid="share-btn"
+          onClick={ () => copyToClipboard() }
+        />
+
+        <input
+          type="image"
+          src={ whiteHeartIcon }
+          alt="favoritar"
+          data-testid="favorite-btn"
+        />
 
         <div>
 
@@ -54,7 +83,7 @@ export default function Details(props) {
     );
   }
 
-  if (history.location.pathname.includes('/meals')) {
+  if (history.location.pathname.includes(`/meals/${recipe.idMeal}`)) {
     const video = youtubeManager(recipe.strYoutube);
     return (
       <>
@@ -65,6 +94,23 @@ export default function Details(props) {
           Voltar
 
         </button>
+
+        {copied && (<small> Link copied! </small>)}
+        <input
+          type="image"
+          src={ shareIcon }
+          alt="Compartilhar"
+          data-testid="share-btn"
+          onClick={ () => copyToClipboard() }
+        />
+
+        <input
+          type="image"
+          src={ whiteHeartIcon }
+          alt="favoritar"
+          data-testid="favorite-btn"
+        />
+
         <div>
           <img
             src={ recipe.strMealThumb }
@@ -108,6 +154,8 @@ export default function Details(props) {
 
 Details.propTypes = {
   recipe: PropTypes.shape({
+    idDrink: PropTypes.string,
+    idMeal: PropTypes.string,
     strAlcoholic: PropTypes.string,
     strCategory: PropTypes.string,
     strDrink: PropTypes.string,

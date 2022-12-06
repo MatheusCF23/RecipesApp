@@ -17,6 +17,13 @@
   width: 100%;
 }
 
+.recommendation {
+  background-color: #333;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  display: flex;
+
 .startbtn {
   bottom: 0;
   position: fixed;

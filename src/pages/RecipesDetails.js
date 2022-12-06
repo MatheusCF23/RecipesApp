@@ -63,6 +63,14 @@ export default function RecipesDetails() {
     <>
       <h1> Recipes Details </h1>
       {API.map((recipe, index) => (<Details key={ index } recipe={ recipe } />))}
+      <button
+        className="startbtn"
+        type="button"
+        data-testid="start-recipe-btn"
+        onClick={ () => history.push(`${history.location.pathname}/in-progress`) }
+      >
+        Start Recipe
+      </button>
     </>
   );
 }

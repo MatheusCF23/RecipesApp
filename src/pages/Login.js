@@ -18,9 +18,10 @@ export default function Login() {
   }
 
   async function handleLogin(event) {
+    const formattedEmail = JSON.stringify({ email });
     event.preventDefault();
 
-    localStorage.setItem('user', JSON.stringify({ email }));
+    localStorage.setItem('user', formattedEmail);
     return history.push('/meals');
   }
 

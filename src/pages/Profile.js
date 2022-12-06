@@ -4,7 +4,8 @@ import Header from '../components/Header';
 
 export default function Profile() {
   const history = useHistory();
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  const { email } = JSON.parse(localStorage.getItem('user'))
+   || { email: 'Usuário desconhecido' };
   function buttonRemove() {
     localStorage.clear();
     return history.push('/');
@@ -16,7 +17,7 @@ export default function Profile() {
         <p
           data-testid="profile-email"
         >
-          { email }
+          {email}
         </p>
         <button
           type="button"

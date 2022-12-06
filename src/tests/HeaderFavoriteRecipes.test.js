@@ -8,6 +8,9 @@ import renderWithRouter from '../helpers/renderWithRouter';
 
 describe('Testes da tela Header da tela Favorite Recipes', () => {
   test('Testa se há o texto Favorite Recipes', () => {
+    localStorage.setItem('user', JSON.stringify([{
+      email: 'teste@teste.com',
+    }]));
     const { history } = renderWithRouter(<App />);
     act(() => {
       history.push('/favorite-recipes');

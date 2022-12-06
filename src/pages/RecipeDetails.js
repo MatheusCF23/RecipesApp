@@ -25,14 +25,11 @@ export default function RecipesDetails() {
 
         return setAPI(data.meals);
 
-      case `/drinks/${id}`:
+      default:
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
         data = await response.json();
 
         return setAPI(data.drinks);
-
-      default:
-        break;
       }
     }
 
@@ -45,14 +42,12 @@ export default function RecipesDetails() {
         data = await response.json();
 
         return setRecomendation(data.drinks.slice(0, maxNumberOfRecommendation));
-      case `/drinks/${id}`:
+
+      default:
         response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
         data = await response.json();
 
         return setRecomendation(data.meals.slice(0, maxNumberOfRecommendation));
-
-      default:
-        break;
       }
     }
     fetchDetails();

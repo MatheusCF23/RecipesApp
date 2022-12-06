@@ -8,9 +8,7 @@ export default function pageTitleManager(pathname) {
     return 'Profile';
   case '/done-recipes':
     return 'Done Recipes';
-  case '/favorite-recipes':
-    return 'Favorite Recipes';
   default:
-    break;
+    return 'Favorite Recipes';
   }
 }

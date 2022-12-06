@@ -8,6 +8,9 @@ import renderWithRouter from '../helpers/renderWithRouter';
 
 describe('Testes da tela do Profile.', () => {
   test('Testa se há 3 Button', () => {
+    localStorage.setItem('user', JSON.stringify([{
+      email: 'teste@teste.com',
+    }]));
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push('/profile');

@@ -30,7 +30,7 @@ function SearchBar() {
 
       return setAPI(APIresponse);
 
-    case '/drinks':
+    default:
       APIresponse = await searchDrinksFetcher(search, radioType);
 
       if (APIresponse === null || APIresponse === undefined) {
@@ -41,9 +41,6 @@ function SearchBar() {
       }
 
       return setAPI(APIresponse);
-
-    default:
-      break;
     }
   }
 

@@ -9,6 +9,9 @@ import renderWithRouter from '../helpers/renderWithRouter';
 
 describe('Testes da tela Header da tela Meals', () => {
   test('Testa se há o texto Meals', () => {
+    localStorage.setItem('user', JSON.stringify([{
+      email: 'teste@teste.com',
+    }]));
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push('/meals');

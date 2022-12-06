@@ -21,14 +21,11 @@ export default function FilterCategoryButtons() {
 
         return setButtons(data.meals);
 
-      case '/drinks':
+      default:
         response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
         data = await response.json();
 
         return setButtons(data.drinks);
-
-      default:
-        break;
       }
     }
     categoryFetcher();
@@ -54,7 +51,8 @@ export default function FilterCategoryButtons() {
         return setAPI(data.meals);
       }
       break;
-    case '/drinks':
+
+    default:
       if (toggle !== category) {
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
         data = await response.json();
@@ -69,9 +67,6 @@ export default function FilterCategoryButtons() {
 
         return setAPI(data.drinks);
       }
-      break;
-
-    default:
       break;
     }
   }
@@ -88,15 +83,12 @@ export default function FilterCategoryButtons() {
 
       return setAPI(data.meals);
 
-    case '/drinks':
+    default:
       response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
       data = await response.json();
       setToggle(false);
 
       return setAPI(data.drinks);
-
-    default:
-      break;
     }
   }
 

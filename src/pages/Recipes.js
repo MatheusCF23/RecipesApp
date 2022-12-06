@@ -23,14 +23,11 @@ export default function Recipes() {
 
         return setAPI(data.meals);
 
-      case '/drinks':
+      default:
         response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         data = await response.json();
 
         return setAPI(data.drinks);
-
-      default:
-        break;
       }
     }
     fetcherForPage();

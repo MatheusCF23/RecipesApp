@@ -8,8 +8,6 @@ export default function RecipesDetails() {
   const { API, setAPI } = useContext(AppContext);
   const id = history.location.pathname.split('/')[2];
 
-  console.log(API);
-
   useEffect(() => {
     async function fetchDetails() {
       let response = {};

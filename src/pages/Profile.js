@@ -4,7 +4,7 @@ import Header from '../components/Header';
 
 export default function Profile() {
   const history = useHistory();
-  const email = JSON.stringify(localStorage.getItem('user'));
+  const { email } = JSON.parse(localStorage.getItem('user'));
   function buttonRemove() {
     localStorage.clear();
     return history.push('/');

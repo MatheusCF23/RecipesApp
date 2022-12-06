@@ -60,7 +60,6 @@ export default function RecipesDetails() {
   }, [history.location.pathname, setAPI, id, setRecomendation]);
 
   function CardRecom () {
-
     if(history.location.pathname.includes('/meals')) {
       return(
         <div className='recommendation'>
@@ -96,7 +95,6 @@ export default function RecipesDetails() {
   }
 
   return (
-
       <>
         <h1> Recipes Details </h1>
         {API.map((recipe, index) => (<Details key={ index } recipe={ recipe } />))}
@@ -104,8 +102,14 @@ export default function RecipesDetails() {
         <div>
         { CardRecom() }
         </div>
-      </>
-       
-
+        <button
+          className="startbtn"
+          type="button"
+          data-testid="start-recipe-btn"
+          onClick={ () => history.push(`${history.location.pathname}/in-progress`) }
+        >
+        Start Recipe
+      </button>
+      </> 
   );
 }

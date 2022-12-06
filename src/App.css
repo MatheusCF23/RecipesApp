@@ -23,4 +23,8 @@
   overflow-x: scroll;
   white-space: nowrap;
   display: flex;
+
+.startbtn {
+  bottom: 0;
+  position: fixed;
 }

@@ -7,6 +7,7 @@ export default function Details(props) {
   const history = useHistory();
   const { recipe } = props;
 
+
   if (history.location.pathname.includes('/drinks')) {
     return (
       <>

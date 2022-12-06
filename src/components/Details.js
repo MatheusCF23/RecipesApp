@@ -9,79 +9,99 @@ export default function Details(props) {
 
   if (history.location.pathname.includes('/drinks')) {
     return (
-      <div>
-        <img
-          src={ recipe.strDrinkThumb }
-          alt={ recipe.strDrink }
-          data-testid="recipe-photo"
-        />
-        <h2
-          data-testid="recipe-title"
+      <>
+        <button
+          type="button"
+          onClick={ () => history.push('/drinks') }
         >
-          {recipe.strDrink}
-        </h2>
-        <h3
-          data-testid="recipe-category"
-        >
-          {recipe.strAlcoholic}
-        </h3>
+          Voltar
 
-        <ul>
-          {recipeListItems(recipe)}
-        </ul>
+        </button>
 
         <div>
-          <h4> Instruções </h4>
-          <span
-            data-testid="instructions"
-          >
-            {recipe.strInstructions}
-          </span>
-        </div>
 
-      </div>
+          <img
+            src={ recipe.strDrinkThumb }
+            alt={ recipe.strDrink }
+            data-testid="recipe-photo"
+          />
+          <h2
+            data-testid="recipe-title"
+          >
+            {recipe.strDrink}
+          </h2>
+          <h3
+            data-testid="recipe-category"
+          >
+            {recipe.strAlcoholic}
+          </h3>
+
+          <ul>
+            {recipeListItems(recipe)}
+          </ul>
+
+          <div>
+            <h4> Instruções </h4>
+            <span
+              data-testid="instructions"
+            >
+              {recipe.strInstructions}
+            </span>
+          </div>
+
+        </div>
+      </>
     );
   }
 
   if (history.location.pathname.includes('/meals')) {
     const video = youtubeManager(recipe.strYoutube);
     return (
-      <div>
-        <img
-          src={ recipe.strMealThumb }
-          alt={ recipe.strMeal }
-          data-testid="recipe-photo"
-        />
-        <h2
-          data-testid="recipe-title"
+      <>
+        <button
+          type="button"
+          onClick={ () => history.push('/meals') }
         >
-          {recipe.strMeal}
-        </h2>
-        <h3
-          data-testid="recipe-category"
-        >
-          {recipe.strCategory}
-        </h3>
+          Voltar
 
-        <ul>
-          {recipeListItems(recipe)}
-        </ul>
-
+        </button>
         <div>
-          <iframe
-            title="Instructions video"
-            src={ video }
-            data-testid="video"
+          <img
+            src={ recipe.strMealThumb }
+            alt={ recipe.strMeal }
+            data-testid="recipe-photo"
           />
-          <h4> Instruções </h4>
-          <span
-            data-testid="instructions"
+          <h2
+            data-testid="recipe-title"
           >
-            {recipe.strInstructions}
-          </span>
-        </div>
+            {recipe.strMeal}
+          </h2>
+          <h3
+            data-testid="recipe-category"
+          >
+            {recipe.strCategory}
+          </h3>
 
-      </div>
+          <ul>
+            {recipeListItems(recipe)}
+          </ul>
+
+          <div>
+            <iframe
+              title="Instructions video"
+              src={ video }
+              data-testid="video"
+            />
+            <h4> Instruções </h4>
+            <span
+              data-testid="instructions"
+            >
+              {recipe.strInstructions}
+            </span>
+          </div>
+
+        </div>
+      </>
     );
   }
 }

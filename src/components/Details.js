@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import recipeListItems from '../helpers/recipeListItems';
 import youtubeManager from '../helpers/youtubeManager';
@@ -13,12 +13,48 @@ export default function Details(props) {
   const [copied, setCopied] = useState(false);
   const { recipe } = props;
   console.log(window.location.href);
+  console.log(recipe)
 
   function copyToClipboard() {
     copy(window.location.href);
     return setCopied(true);
   }
 
+  //funções para favoritar drinks e meals
+ function handleFavMeals(event) {
+  const objMeals = [{
+    id: recipe.idMeal,
+    type: 'meal',
+    nationality: recipe.strArea,
+    category: recipe.strCategory,
+    alcoholicOrNot: '',
+    name: recipe.strMeal,
+    image: recipe.strMealThumb,
+  }]
+    const favoritado = JSON.stringify( objMeals );
+    event.preventDefault();
+
+    localStorage.setItem('favoriteRecipes', favoritado);
+  }
+
+ 
+
+  function handleFavDrink(event) {
+    const objDrink = [{
+      id: recipe.idDrink, 
+      type: 'drink',
+      nationality: '',
+      category: recipe.strCategory,
+      alcoholicOrNot: recipe.strAlcoholic,
+      name: recipe.strDrink,
+      image: recipe.strDrinkThumb,
+    }]
+      const favoritado = JSON.stringify( objDrink );
+      event.preventDefault();
+  
+      localStorage.setItem('favoriteRecipes', favoritado);
+    }
+  
   if (history.location.pathname.includes(`/drinks/${recipe.idDrink}`)) {
     return (
       <>
@@ -45,6 +81,7 @@ export default function Details(props) {
           src={ whiteHeartIcon }
           alt="favoritar"
           data-testid="favorite-btn"
+          onClick={ (event) => handleFavDrink(event) }
         />
 
         <div>
@@ -109,6 +146,7 @@ export default function Details(props) {
           src={ whiteHeartIcon }
           alt="favoritar"
           data-testid="favorite-btn"
+          onClick={ (event) => handleFavMeals(event) }
         />
 
         <div>

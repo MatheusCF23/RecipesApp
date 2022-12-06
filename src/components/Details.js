@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import recipeListItems from '../helpers/recipeListItems';
 import youtubeManager from '../helpers/youtubeManager';
@@ -36,8 +36,6 @@ export default function Details(props) {
 
     localStorage.setItem('favoriteRecipes', favoritado);
   }
-
- 
 
   function handleFavDrink(event) {
     const objDrink = [{

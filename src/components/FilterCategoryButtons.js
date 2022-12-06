@@ -9,8 +9,6 @@ export default function FilterCategoryButtons() {
   const history = useHistory();
   const { setAPI } = useContext(AppContext);
 
-  console.log(buttons);
-
   useEffect(() => {
     async function categoryFetcher() {
       let data = [];
@@ -41,7 +39,7 @@ export default function FilterCategoryButtons() {
     let data = [];
     switch (history.location.pathname) {
     case '/meals':
-      if (toggle === false) {
+      if (toggle !== category) {
         response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
         data = await response.json();
         setToggle(category);
@@ -57,7 +55,7 @@ export default function FilterCategoryButtons() {
       }
       break;
     case '/drinks':
-      if (toggle === false) {
+      if (toggle !== category) {
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
         data = await response.json();
         setToggle(category);

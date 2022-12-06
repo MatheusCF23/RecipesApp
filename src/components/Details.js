@@ -59,7 +59,9 @@ export default function Details(props) {
           {recipe.strCategory}
         </h3>
 
-        <ul />
+        <ul>
+          {}
+        </ul>
 
         <div>
           <iframe

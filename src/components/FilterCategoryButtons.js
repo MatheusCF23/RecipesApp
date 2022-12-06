@@ -44,28 +44,34 @@ export default function FilterCategoryButtons() {
       if (toggle === false) {
         response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
         data = await response.json();
+        setToggle(category);
+
+        return setAPI(data.meals);
+      }
+      if (toggle === category) {
+        response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+        data = await response.json();
         setToggle(!toggle);
 
         return setAPI(data.meals);
       }
-      response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-      data = await response.json();
-      setToggle(!toggle);
-
-      return setAPI(data.meals);
+      break;
     case '/drinks':
       if (toggle === false) {
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+        data = await response.json();
+        setToggle(category);
+
+        return setAPI(data.drinks);
+      }
+      if (toggle === category) {
+        response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         data = await response.json();
         setToggle(!toggle);
 
         return setAPI(data.drinks);
       }
-      response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-      data = await response.json();
-      setToggle(!toggle);
-
-      return setAPI(data.drinks);
+      break;
 
     default:
       break;
@@ -102,6 +108,7 @@ export default function FilterCategoryButtons() {
           <button
             key={ `${strCategory}-button` }
             type="button"
+            name={ strCategory }
             data-testid={ `${strCategory}-category-filter` }
             onClick={ () => filterByCategory(strCategory) }
           >

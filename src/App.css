@@ -19,10 +19,11 @@
 
 .recommendation {
   background-color: #333;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  white-space: nowrap;
   display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
 
 .startbtn {
   bottom: 0;

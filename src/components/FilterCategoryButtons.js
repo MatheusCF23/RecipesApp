@@ -86,12 +86,14 @@ export default function FilterCategoryButtons() {
     case '/meals':
       response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
       data = await response.json();
+      setToggle(false);
 
       return setAPI(data.meals);
 
     case '/drinks':
       response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
       data = await response.json();
+      setToggle(false);
 
       return setAPI(data.drinks);
 

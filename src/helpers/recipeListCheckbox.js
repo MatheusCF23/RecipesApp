@@ -14,11 +14,11 @@ export default function recipeListCheckbox(object) {
         type="checkbox"
         value={ object[ingredient].replace(' ', '_') }
         id={ object[ingredient].replace(' ', '_') }
-        data-testid={ `${index}-ingredient-name-and-measure` }
         className="checkbox"
       />
       <label
         htmlFor={ object[ingredient].replace(' ', '_') }
+        data-testid={ `${index}-ingredient-step` }
       >
         { `${object[ingredient]} - ${object[arrMeasures[index]]}`}
       </label>

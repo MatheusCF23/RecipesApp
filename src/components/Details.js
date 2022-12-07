@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import recipeListItems from '../helpers/recipeListItems';
 import youtubeManager from '../helpers/youtubeManager';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
@@ -12,8 +13,7 @@ export default function Details(props) {
   const history = useHistory();
   const [copied, setCopied] = useState(false);
   const { recipe } = props;
-  console.log(window.location.href);
-  console.log(recipe);
+  const [favorited, setFavorited] = useState(false);
 
   function copyToClipboard() {
     copy(window.location.href);
@@ -22,7 +22,16 @@ export default function Details(props) {
 
   // funções para favoritar drinks e meals
   function handleFavMeals(event) {
-    const objMeals = [{
+    const prevLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    if (prevLocalStorage.find(({ id, type }) => (
+      id === recipe.idMeal && type === 'meal'))) {
+      const filterLocalStorage = prevLocalStorage
+        .filter(({ id }) => id !== recipe.idMeal);
+      setFavorited(false);
+      return localStorage.setItem('favoriteRecipes', JSON.stringify(filterLocalStorage));
+    }
+
+    const objMeals = {
       id: recipe.idMeal,
       type: 'meal',
       nationality: recipe.strArea,
@@ -30,15 +39,26 @@ export default function Details(props) {
       alcoholicOrNot: '',
       name: recipe.strMeal,
       image: recipe.strMealThumb,
-    }];
-    const favoritado = JSON.stringify(objMeals);
+    };
+
+    const favoritado = JSON.stringify([...prevLocalStorage, objMeals]);
     event.preventDefault();
 
     localStorage.setItem('favoriteRecipes', favoritado);
+    return setFavorited(true);
   }
 
   function handleFavDrink(event) {
-    const objDrink = [{
+    const prevLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    if (prevLocalStorage.find(({ id, type }) => (
+      id === recipe.idDrink && type === 'drink'))) {
+      const filterLocalStorage = prevLocalStorage
+        .filter(({ id }) => id !== recipe.idDrink);
+      setFavorited(false);
+      return localStorage.setItem('favoriteRecipes', JSON.stringify(filterLocalStorage));
+    }
+
+    const objDrink = {
       id: recipe.idDrink,
       type: 'drink',
       nationality: '',
@@ -46,12 +66,34 @@ export default function Details(props) {
       alcoholicOrNot: recipe.strAlcoholic,
       name: recipe.strDrink,
       image: recipe.strDrinkThumb,
-    }];
-    const favoritado = JSON.stringify(objDrink);
+    };
+
+    const favoritado = JSON.stringify([...prevLocalStorage, objDrink]);
     event.preventDefault();
 
     localStorage.setItem('favoriteRecipes', favoritado);
+    return setFavorited(true);
   }
+
+  useEffect(() => {
+    function favoriteIcon() {
+      const prevLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      switch (history.location.pathname) {
+      case `/drinks/${recipe.idDrink}`:
+        return prevLocalStorage.some(({ id, type }) => (
+          id === recipe.idDrink && type === 'drink'))
+          ? setFavorited(true)
+          : setFavorited(false);
+
+      default:
+        return prevLocalStorage.some(({ id, type }) => (
+          id === recipe.idMeal && type === 'meal'))
+          ? setFavorited(true)
+          : setFavorited(false);
+      }
+    }
+    favoriteIcon();
+  }, [history.location.pathname, recipe.idDrink, recipe.idMeal]);
 
   if (history.location.pathname.includes(`/drinks/${recipe.idDrink}`)) {
     return (
@@ -76,7 +118,7 @@ export default function Details(props) {
 
         <input
           type="image"
-          src={ whiteHeartIcon }
+          src={ favorited ? blackHeartIcon : whiteHeartIcon }
           alt="favoritar"
           data-testid="favorite-btn"
           onClick={ (event) => handleFavDrink(event) }
@@ -141,7 +183,7 @@ export default function Details(props) {
 
         <input
           type="image"
-          src={ whiteHeartIcon }
+          src={ favorited ? blackHeartIcon : whiteHeartIcon }
           alt="favoritar"
           data-testid="favorite-btn"
           onClick={ (event) => handleFavMeals(event) }

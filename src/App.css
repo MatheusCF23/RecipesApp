@@ -29,3 +29,7 @@
   bottom: 0;
   position: fixed;
 }
+
+.checkbox:checked + label {
+  text-decoration: line-through solid black;
+}

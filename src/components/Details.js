@@ -15,7 +15,6 @@ export default function Details(props) {
   const [copied, setCopied] = useState(false);
   const { recipe } = props;
   const [favorited, setFavorited] = useState(false);
-  console.log(recipeListCheckbox(recipe))
 
   function copyToClipboard() {
     copy(window.location.href);

@@ -10,17 +10,17 @@ export default function recipeListCheckbox(object) {
   return arrIngredients.map((ingredient, index) => (
     <div key={ index }>
 
-      <input
-        type="checkbox"
-        value={ object[ingredient].replace(' ', '_') }
-        id={ object[ingredient].replace(' ', '_') }
-        data-testid={ `${index}-ingredient-name-and-measure` }
-        className="checkbox"
-      />
       <label
         htmlFor={ object[ingredient].replace(' ', '_') }
+        data-testid={ `${index}-ingredient-step` }
       >
         { `${object[ingredient]} - ${object[arrMeasures[index]]}`}
+        <input
+          type="checkbox"
+          value={ object[ingredient].replace(' ', '_') }
+          id={ object[ingredient].replace(' ', '_') }
+          className="checkbox"
+        />
       </label>
     </div>
 

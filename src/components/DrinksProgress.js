@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Checkbox from './Checkbox';
+import recipeListCheckbox from '../helpers/recipeListCheckbox';
 
-export default function DrinksInProgress() {
+export default function DrinksProgress() {
   const [drink, setDrink] = useState({});
   const location = useLocation();
   const locationSplit = location.pathname.split('/');
@@ -13,7 +13,6 @@ export default function DrinksInProgress() {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       const response = await fetch(url);
       const results = await response.json();
-      console.log(results);
       setDrink(results.drinks[0]);
     };
     fetchAPI();
@@ -32,7 +31,7 @@ export default function DrinksInProgress() {
         <button type="button" data-testid="favorite-btn">Favoritar</button>
         <p data-testid="recipe-category">{drink.strCategory}</p>
         <p data-testid="instructions">{drink.strInstructions}</p>
-        <Checkbox recipeType={ drink } />
+        {recipeListCheckbox(drink)}
         <button type="button" data-testid="finish-recipe-btn">Finalizar</button>
       </div>
 

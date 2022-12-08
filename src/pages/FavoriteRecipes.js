@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 export default function FavoriteRecipes() {
-  const favLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const favLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
 
   return (
     <>

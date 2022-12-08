@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Checkbox from './Checkbox';
 
 export default function MealsInProgress() {
   const [meal, setMeal] = useState({});
   const location = useLocation();
   const locationSplit = location.pathname.split('/');
   const id = locationSplit[2];
+  console.log(object);
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -31,6 +33,7 @@ export default function MealsInProgress() {
       <button type="button" data-testid="favorite-btn">Favoritar</button>
       <p data-testid="recipe-category">{meal.strCategory}</p>
       <p data-testid="instructions">{meal.strInstructions}</p>
+      <Checkbox recipeType={ meal } />
       <button type="button" data-testid="finish-recipe-btn">Finalizar</button>
     </div>
   );

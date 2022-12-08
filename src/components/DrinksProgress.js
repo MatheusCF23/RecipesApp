@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Checkbox from './Checkbox';
 
 export default function DrinksInProgress() {
   const [drink, setDrink] = useState({});
@@ -31,6 +32,7 @@ export default function DrinksInProgress() {
         <button type="button" data-testid="favorite-btn">Favoritar</button>
         <p data-testid="recipe-category">{drink.strCategory}</p>
         <p data-testid="instructions">{drink.strInstructions}</p>
+        <Checkbox recipeType={ drink } />
         <button type="button" data-testid="finish-recipe-btn">Finalizar</button>
       </div>
 

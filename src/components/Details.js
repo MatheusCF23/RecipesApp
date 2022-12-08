@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import recipeListCheckbox from '../helpers/recipeListCheckbox';
 import recipeListItems from '../helpers/recipeListItems';
 import youtubeManager from '../helpers/youtubeManager';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -155,7 +154,6 @@ export default function Details(props) {
               {recipe.strInstructions}
             </span>
           </div>
-          {recipeListCheckbox(recipe)}
         </div>
       </>
     );
@@ -224,7 +222,6 @@ export default function Details(props) {
               {recipe.strInstructions}
             </span>
           </div>
-
         </div>
       </>
     );

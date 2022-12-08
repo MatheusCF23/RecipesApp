@@ -1,5 +1,5 @@
 export default function recipeListCheckbox(object) {
-  const handleCheckbox = ({ target }) => {
+  const handleClick = ({ target }) => {
     if (target.checked) {
       target.parentElement.className = 'checkbox';
     }
@@ -27,7 +27,7 @@ export default function recipeListCheckbox(object) {
           type="checkbox"
           value={ object[ingredient].replace(' ', '_') }
           id={ object[ingredient].replace(' ', '_') }
-          onClick={ handleCheckbox }
+          onClick={ handleClick }
         />
       </label>
     </div>

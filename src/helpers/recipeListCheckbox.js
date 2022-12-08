@@ -8,15 +8,21 @@ export default function recipeListCheckbox(object) {
     .filter((key) => key.includes('strMeasure'));
 
   return arrIngredients.map((ingredient, index) => (
-    <label key={ index } htmlFor={ object[ingredient] }>
-      { `${object[ingredient]} - ${object[arrMeasures[index]]}`}
+    <div key={ index }>
+
       <input
         type="checkbox"
-        value={ object[ingredient] }
-        data-testid={ `${index}-ingredient-name-and-measure` }
+        value={ object[ingredient].replace(' ', '_') }
+        id={ object[ingredient].replace(' ', '_') }
+        className="checkbox"
       />
-
-    </label>
+      <label
+        htmlFor={ object[ingredient].replace(' ', '_') }
+        data-testid={ `${index}-ingredient-step` }
+      >
+        { `${object[ingredient]} - ${object[arrMeasures[index]]}`}
+      </label>
+    </div>
 
   ));
 }

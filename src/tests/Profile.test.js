@@ -13,6 +13,7 @@ describe('Testes da tela do Profile.', () => {
     localStorage.setItem('user', JSON.stringify([{
       email: emailTest,
     }]));
+
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push('/profile');

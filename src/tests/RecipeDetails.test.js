@@ -7,10 +7,20 @@ import { AppProvider } from '../context/AppContext';
 import renderWithRouter from '../helpers/renderWithRouter';
 
 const pathMealsId = '/meals/52977';
-const pathDrinksId = 'drinks/15997';
+const pathDrinksId = '/drinks/15997';
 
 describe('Testes da tela de Recipes Details de Meals', () => {
   test('Testa se há o texto Recipes Details na tela', () => {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([{
+      alcoholicOrNot: '',
+      category: 'Side',
+      id: '52977',
+      image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+      name: 'Corba',
+      nationality: 'Turkish',
+      type: 'meal',
+    }]));
+
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathMealsId);
@@ -43,6 +53,8 @@ describe('Testes da tela de Recipes Details de Meals', () => {
 
     const iconFavorite = await screen.findByTestId('favorite-btn');
     expect(iconFavorite).toBeInTheDocument();
+    userEvent.click(iconFavorite);
+    expect(iconFavorite).toHaveAttribute('src', 'whiteHeartIcon.svg');
   });
 
   test('Testa se há uma imagem na tela', async () => {
@@ -134,7 +146,7 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
     expect(history.location.pathname).toBe('/drinks');
   });
 
-  test('Testa se há um icone  de copiar e um de favoritar na tela de Drinks', async () => {
+  test('Testa se há um icone  de copiar e um de favoritar na tela de Drinks, sendo o mesmo clicável', async () => {
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathDrinksId);
@@ -146,6 +158,8 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
 
     const iconFavorite = await screen.findByTestId('favorite-btn');
     expect(iconFavorite).toBeInTheDocument();
+    userEvent.click(iconFavorite);
+    expect(iconFavorite).toHaveAttribute('src', 'blackHeartIcon.svg');
   });
 
   test('Testa se há uma imagem na tela', async () => {
@@ -171,7 +185,7 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
     act(() => {
       history.push(pathDrinksId);
     });
-    const ingredient = await screen.findByText('Galliano - 2 1/2 shots');
+    const ingredient = await screen.findAllByText('Galliano - 2 1/2 shots');
     expect(ingredient).toBeInTheDocument();
   });
 

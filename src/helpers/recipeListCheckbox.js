@@ -1,4 +1,13 @@
-export default function recipeListCheckbox(object) {
+export default function RecipeListCheckbox(object) {
+  const handleCheckbox = ({ target }) => {
+    if (target.checked) {
+      target.parentElement.className = 'checkbox';
+    }
+    if (!target.checked) {
+      target.parentElement.className = '';
+    }
+  };
+
   const arrIngredients = Object.keys(object)
     .filter((filteredKey) => object[filteredKey] !== null && object[filteredKey] !== '')
     .filter((key) => key.includes('strIngredient'));
@@ -19,7 +28,7 @@ export default function recipeListCheckbox(object) {
           type="checkbox"
           value={ object[ingredient].replace(' ', '_') }
           id={ object[ingredient].replace(' ', '_') }
-          className="checkbox"
+          onClick={ handleCheckbox }
         />
       </label>
     </div>

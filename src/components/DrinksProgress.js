@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import recipeListCheckbox from '../helpers/recipeListCheckbox';
+import RecipeListCheckbox from '../helpers/recipeListCheckbox';
 
 export default function DrinksProgress() {
   const [drink, setDrink] = useState({});
@@ -31,7 +31,7 @@ export default function DrinksProgress() {
         <button type="button" data-testid="favorite-btn">Favoritar</button>
         <p data-testid="recipe-category">{drink.strCategory}</p>
         <p data-testid="instructions">{drink.strInstructions}</p>
-        {recipeListCheckbox(drink)}
+        <RecipeListCheckbox drink={ drink } />
         <button type="button" data-testid="finish-recipe-btn">Finalizar</button>
       </div>
 

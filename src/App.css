@@ -30,9 +30,6 @@
   position: fixed;
 }
 
-.checkbox:checked {
+.checkbox{
   text-decoration: line-through solid black;
-}
-label {
-  text-decoration: none;
 }

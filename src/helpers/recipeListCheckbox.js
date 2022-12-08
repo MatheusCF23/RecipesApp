@@ -1,4 +1,12 @@
 export default function recipeListCheckbox(object) {
+  const handleChange = ({ target }) => {
+    if (target.checked) {
+      target.parentElement.className = 'checkbox';
+    }
+    if (!target.checked) {
+      target.parentElement.className = '';
+    }
+  };
   const arrIngredients = Object.keys(object)
     .filter((filteredKey) => object[filteredKey] !== null && object[filteredKey] !== '')
     .filter((key) => key.includes('strIngredient'));
@@ -10,17 +18,17 @@ export default function recipeListCheckbox(object) {
   return arrIngredients.map((ingredient, index) => (
     <div key={ index }>
 
-      <input
-        type="checkbox"
-        value={ object[ingredient].replace(' ', '_') }
-        id={ object[ingredient].replace(' ', '_') }
-        className="checkbox"
-      />
       <label
         htmlFor={ object[ingredient].replace(' ', '_') }
         data-testid={ `${index}-ingredient-step` }
       >
         { `${object[ingredient]} - ${object[arrMeasures[index]]}`}
+        <input
+          type="checkbox"
+          value={ object[ingredient].replace(' ', '_') }
+          id={ object[ingredient].replace(' ', '_') }
+          onClick={ handleChange }
+        />
       </label>
     </div>
 

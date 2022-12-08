@@ -26,6 +26,9 @@ describe('Testes do componente SearchBar na tela Meals', () => {
 
     const ingredients = screen.getByTestId('ingredient-search-radio');
     userEvent.click(ingredients);
+    // await waitFor(() => {
+    //   expect(ingredients.checked).toEqual(true);
+    // });
 
     const btnBusca = screen.getByTestId(buscaBtn);
     userEvent.click(btnBusca);
@@ -35,14 +38,27 @@ describe('Testes do componente SearchBar na tela Meals', () => {
 
     const name = screen.getByTestId(firstName);
     expect(name).toBeInTheDocument();
-    // userEvent.click(name);
-    // userEvent.type(inputSearch, 'Corba');
-    // userEvent.click(btnBusca);
+    // await waitFor(() => {
+    //   expect(name.checked).toEqual(false);
+    // });
+    userEvent.click(name);
+    // await waitFor(() => {
+    //   expect(name.checked).toEqual(true);
+    // });
 
-    // expect(history.location.pathname).toBe('/meals/:id');
+    userEvent.type(inputSearch, 'Corba');
+    userEvent.click(btnBusca);
+
+    expect(history.location.pathname).toBe('/meals');
 
     const first = screen.getByTestId('first-letter-search-radio');
     expect(first).toBeInTheDocument();
+
+    userEvent.type(inputSearch, 'a');
+    userEvent.click(first);
+    userEvent.click(btnBusca);
+
+    // expect(await screen.findByText(/Apple Frangipan Tart/i)).toBeInTheDocument();
 
     jest.spyOn(global, 'alert').mockImplementation(() => {});
     userEvent.type(inputSearch, 'be');
@@ -186,6 +202,12 @@ describe('Testando o SearchBar da page Drinks', () => {
     const first = screen.getByTestId('first-letter-search-radio');
     expect(first).toBeInTheDocument();
 
+    userEvent.type(inputSearch, 'a');
+    userEvent.click(first);
+    userEvent.click(btnBusca);
+
+    // expect(await screen.findByText(/A1/i)).toBeInTheDocument();
+
     jest.spyOn(global, 'alert').mockImplementation(() => {});
     userEvent.type(inputSearch, 'ee');
     userEvent.click(first);
@@ -257,7 +279,7 @@ describe('Testando o SearchBar da page Drinks', () => {
       history.push('/drinks');
     });
 
-    const button1 = await screen.findByRole('button', { name: 'Ordinary Drink' });
+    const button1 = await screen.findByRole('button', { name: /Ordinary Drink/i });
     expect(button1).toBeInTheDocument();
     userEvent.click(button1);
     expect(await screen.findByText(/3-Mile Long Island Iced Tea/i)).toBeInTheDocument();
@@ -278,7 +300,7 @@ describe('Testando o SearchBar da page Drinks', () => {
     userEvent.click(button3);
     expect(await screen.findByText(/GG/i)).toBeInTheDocument();
 
-    const button4 = await screen.findByRole('button', { name: 'Other/Unknown' });
+    const button4 = await screen.findByRole('button', { name: 'Other / Unknown' });
     expect(button4).toBeInTheDocument();
     userEvent.click(button4);
     expect(await screen.findByText(/A Piece of Ass/i)).toBeInTheDocument();

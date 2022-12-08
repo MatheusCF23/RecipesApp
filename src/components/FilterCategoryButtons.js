@@ -41,15 +41,16 @@ export default function FilterCategoryButtons() {
         data = await response.json();
         setToggle(category);
 
-        return setAPI(data.meals);
+        // return setAPI(data.meals);
       }
       if (toggle === category) {
         response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
         data = await response.json();
         setToggle(!toggle);
 
-        return setAPI(data.meals);
+        // return setAPI(data.meals);
       }
+      setAPI(data.meals);
       break;
 
     default:
@@ -58,15 +59,16 @@ export default function FilterCategoryButtons() {
         data = await response.json();
         setToggle(category);
 
-        return setAPI(data.drinks);
+        // return setAPI(data.drinks);
       }
       if (toggle === category) {
         response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         data = await response.json();
         setToggle(!toggle);
 
-        return setAPI(data.drinks);
+        // return setAPI(data.drinks);
       }
+      setAPI(data.drinks);
       break;
     }
   }

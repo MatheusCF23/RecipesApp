@@ -5,7 +5,7 @@ import searchDrinksFetcher from '../helpers/searchDrinksFetcher';
 import searchMealFetcher from '../helpers/searchMealFetcher';
 
 function SearchBar() {
-  const [checkedRadio, setCheckedRadio] = useState('recipeIngredient');
+  const [checkedRadio, setCheckedRadio] = useState();
   const [query, setQuery] = useState('');
   const history = useHistory();
   const { setAPI } = useContext(AppContext);

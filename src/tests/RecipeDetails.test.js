@@ -101,13 +101,13 @@ describe('Testes da tela de Recipes Details de Meals', () => {
     expect(history.location.pathname).toBe('/meals/52977/in-progress');
   });
 
-  test('Testa se há o texto Recomendações esta na tela', () => {
+  test('Testa se há o texto Recomendações esta na tela', async () => {
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathMealsId);
     });
 
-    const text = screen.getByText(/Recomendações/i);
+    const text = await screen.findByTestId('5-recommendation-card');
     expect(text).toBeInTheDocument();
   });
 });
@@ -204,13 +204,13 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
     expect(history.location.pathname).toBe('/drinks/15997/in-progress');
   });
 
-  test('Testa se há o texto Recomendações esta na tela', () => {
+  test('Testa se há o texto Recomendações esta na tela', async () => {
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathDrinksId);
     });
 
-    const text = screen.getByText(/Recomendações/i);
+    const text = await screen.findByTestId('5-recommendation-card');
     expect(text).toBeInTheDocument();
   });
 });

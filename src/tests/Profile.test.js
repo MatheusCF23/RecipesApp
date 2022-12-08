@@ -6,10 +6,12 @@ import App from '../App';
 import { AppProvider } from '../context/AppContext';
 import renderWithRouter from '../helpers/renderWithRouter';
 
+const emailTest = 'teste@teste.com';
+
 describe('Testes da tela do Profile.', () => {
   test('Testa se há 3 Button', () => {
     localStorage.setItem('user', JSON.stringify([{
-      email: 'teste@teste.com',
+      email: emailTest,
     }]));
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {

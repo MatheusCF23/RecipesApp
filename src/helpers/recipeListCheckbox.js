@@ -1,4 +1,4 @@
-export default function RecipeListCheckbox(object) {
+export default function recipeListCheckbox(object) {
   const handleCheckbox = ({ target }) => {
     if (target.checked) {
       target.parentElement.className = 'checkbox';
@@ -7,7 +7,6 @@ export default function RecipeListCheckbox(object) {
       target.parentElement.className = '';
     }
   };
-
   const arrIngredients = Object.keys(object)
     .filter((filteredKey) => object[filteredKey] !== null && object[filteredKey] !== '')
     .filter((key) => key.includes('strIngredient'));

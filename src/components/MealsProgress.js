@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import recipeListCheckbox from '../helpers/recipeListCheckbox';
 
-export default function MealsProgress() {
+export default function MealsInProgress(object) {
   const [meal, setMeal] = useState({});
   const location = useLocation();
   const locationSplit = location.pathname.split('/');
   const id = locationSplit[2];
+  console.log(object);
 
   useEffect(() => {
     const fetchAPI = async () => {

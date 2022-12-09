@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import recipeListCheckbox from '../helpers/recipeListCheckbox';
 
 export default function MealsInProgress(object) {
+  const history = useHistory();
   const [meal, setMeal] = useState({});
   const location = useLocation();
   const locationSplit = location.pathname.split('/');
   const id = locationSplit[2];
+  const [disableBTN, setDisableBTN] = useState(true);
+  console.log(setDisableBTN);
   console.log(object);
 
   useEffect(() => {
@@ -16,9 +19,37 @@ export default function MealsInProgress(object) {
       const results = await response.json();
       setMeal(results.meals[0]);
     };
-
     fetchAPI();
   }, [id]);
+
+  const saveDoneRecipeLocalS = (parametro) => {
+    localStorage.setItem('doneRecipes', JSON.stringify(parametro));
+  };
+
+  const inDate = new Date();
+
+  const saveLocalS = {
+    id: meal.idMeal,
+    type: 'meal',
+    nationality: (meal.strArea ? meal.strArea : ''),
+    category: (meal.strCategory !== null ? meal.strCategory : ''),
+    alcoholicOrNot: ((meal.strAlcoholic !== null
+       && meal.strAlcoholic) ? meal.strAlcoholic : ''),
+    name: meal.strMeal,
+    image: meal.strMealThumb,
+    doneDate: inDate.toISOString(),
+    tags: ((meal.strTags !== null && meal.strTags) ? meal.strTags.split(',') : []),
+  };
+
+  const handleBtnFinish = () => {
+    const doneRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (!doneRecipe) {
+      saveDoneRecipeLocalS([saveLocalS]);
+    } else {
+      saveDoneRecipeLocalS([...doneRecipe, saveLocalS]);
+    }
+    history.push('/done-recipes');
+  };
 
   return (
 
@@ -34,7 +65,15 @@ export default function MealsInProgress(object) {
       <p data-testid="recipe-category">{meal.strCategory}</p>
       <p data-testid="instructions">{meal.strInstructions}</p>
       {recipeListCheckbox(meal)}
-      <button type="button" data-testid="finish-recipe-btn">Finalizar</button>
+      <button
+        type="button"
+        className="finish-btn"
+        data-testid="finish-recipe-btn"
+        disable={ disableBTN }
+        onClick={ handleBtnFinish }
+      >
+        Finish Recipe
+      </button>
     </div>
   );
 }

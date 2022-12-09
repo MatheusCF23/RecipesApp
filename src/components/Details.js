@@ -106,7 +106,7 @@ export default function Details(props) {
 
         </button>
 
-        {copied && (<p> Laink copied! </p>)}
+        {copied && (<p> Link copied! </p>)}
 
         <input
           type="image"

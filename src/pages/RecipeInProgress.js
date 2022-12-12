@@ -13,10 +13,10 @@ export default function MealsProgress() {
 
   const [fetchALL, setFetchALL] = useState([]);
   const [ingredients, setIngredients] = useState([]);
+  const [isCopy, setIsCopy] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isChecked, setIsChecked] = useState(null);
-  const [isCopy, setIsCopy] = useState(false);
 
   useEffect(() => {
     if (!localStorage.inProgressRecipes) {

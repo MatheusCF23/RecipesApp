@@ -10,9 +10,15 @@ const emailTest = 'teste@teste.com';
 
 describe('Testes da tela do Profile.', () => {
   test('Testa se há 3 Button', () => {
-    localStorage.setItem('user', JSON.stringify([{
-      email: emailTest,
-    }]));
+    beforeEach(() => {
+      localStorage.setItem('user', JSON.stringify([{
+        email: emailTest,
+      }]));
+    });
+
+    afterEach(() => {
+      localStorage.clear();
+    });
 
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {

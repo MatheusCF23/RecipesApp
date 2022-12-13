@@ -1,44 +1,44 @@
 /* @media (min-width: 480px) { */
- .headerIcons {
-   align-items: center;
-   display: flex;
-   justify-content: center;
-   top: 0;
-   width: 100%;
+.headerIcons {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  width: 100%;
  }
 
- .footer {
-   align-items: center;
-   bottom: 0;
-   display: flex;
-   height: 100px;
-   justify-content: center;
-   line-height: 100px;
-   position: fixed;
-   width: 100%;
- }
+.footer {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  line-height: 100px;
+  position: fixed;
+  width: 100%;
+}
 
- .recommendation {
-   background-color: #333;
-   display: flex;
-   overflow-x: scroll;
-   overflow-y: hidden;
-   white-space: nowrap;
- }
+.recommendation {
+  background-color: #333;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
 
- .startbtn {
-   bottom: 0;
-   position: fixed;
- }
+.startbtn {
+  bottom: 0;
+  position: fixed;
+}
 
- .checkbox {
-   text-decoration: line-through solid black;
- }
+.checkbox {
+  text-decoration: line-through solid black;
+}
 
- .finish-btn {
-   bottom: 0;
-   position: fixed;
- }
+.finish-btn {
+  bottom: 0;
+  position: fixed;
+}
 
  /* body {
    background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-fresh-fruit-and-vegetable-breakfast-food-image_30144.jpg');

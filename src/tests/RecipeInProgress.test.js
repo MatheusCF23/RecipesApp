@@ -8,18 +8,23 @@ import renderWithRouter from '../helpers/renderWithRouter';
 
 const pathMealsId = '/meals/53060/in-progress';
 const pathDrinksId = '/drinks/15997/in-progress';
+const whiteHeartIcon = 'whiteHeartIcon.svg';
+const blackHeartIcon = 'blackHeartIcon.svg';
+const favoriteBtn = 'favorite-btn';
 
 describe('Testes da tela de Recipes in procress de Meals', () => {
-  localStorage.setItem('inProgressRecipes', JSON.stringify([{
+  localStorage.setItem('doneRecipes', JSON.stringify([{
     alcoholicOrNot: '',
     category: 'Side',
+    doneDate: '2022-12-12T22:28:52.281Z',
     id: '53060',
     image: 'https://www.themealdb.com/images/media/meals/tkxquw1628771028.jpg',
     name: 'Burek',
     nationality: 'Croatian',
+    tags: ['Streetfood', ' Onthego'],
     type: 'meal',
   }]));
-  localStorage.clear();
+
   test('Testa se há uma imagem na tela', async () => {
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
@@ -39,7 +44,27 @@ describe('Testes da tela de Recipes in procress de Meals', () => {
     expect(title).toBeInTheDocument();
   });
 
+  test('Teta se o botão favoritar muda o icone ao salvar', async () => {
+    const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
+    act(() => {
+      history.push(pathMealsId);
+    });
+    const buttonFavoritar = await screen.findByTestId(favoriteBtn);
+    expect(buttonFavoritar).toBeInTheDocument();
+
+    expect(buttonFavoritar).toHaveAttribute('src', whiteHeartIcon);
+    userEvent.click(buttonFavoritar);
+    expect(buttonFavoritar).toBeTruthy();
+  });
+
   test('Testa se há dois botões na tela', async () => {
+    localStorage.clear();
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: () => {},
+      },
+    });
+
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathMealsId);
@@ -49,8 +74,16 @@ describe('Testes da tela de Recipes in procress de Meals', () => {
     userEvent.click(buttonCompartilhar);
     expect(await screen.findByText(/Link copied/i)).toBeInTheDocument();
 
-    const buttonFavoritar = await screen.findByTestId('favorite-btn');
+    const buttonFavoritar = await screen.findByTestId(favoriteBtn);
     expect(buttonFavoritar).toBeInTheDocument();
+
+    expect(buttonFavoritar).toHaveAttribute('src', whiteHeartIcon);
+    userEvent.click(buttonFavoritar);
+    expect(buttonFavoritar).toHaveAttribute('src', blackHeartIcon);
+
+    userEvent.click(buttonFavoritar);
+
+    // expect(buttonFavoritar).toHaveAttribute('src', whiteHeartIcon);
   });
 
   test('Testa se há instruções sendo renderizado na tela', async () => {
@@ -97,16 +130,18 @@ describe('Testes da tela de Recipes in procress de Meals', () => {
 });
 
 describe('Testes da tela de Recipes in procress de drinks', () => {
-  localStorage.setItem('inProgressRecipes', JSON.stringify([{
+  localStorage.setItem('doneRecipes', JSON.stringify([{
     alcoholicOrNot: 'Optional alcohol',
     category: 'Ordinary Drink',
+    doneDate: '2022-12-12T22:27:12.870Z',
     id: '15997',
     image: 'https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg',
     name: 'GG',
     nationality: '',
+    tags: [],
     type: 'drink',
   }]));
-  localStorage.clear();
+
   test('Testa se há uma imagem na tela', async () => {
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
@@ -126,7 +161,21 @@ describe('Testes da tela de Recipes in procress de drinks', () => {
     expect(title).toBeInTheDocument();
   });
 
+  test('Teta se o botão favoritar muda o icone ao salvar', async () => {
+    const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
+    act(() => {
+      history.push(pathDrinksId);
+    });
+    const buttonFavoritar = await screen.findByTestId('favorite-btn');
+    expect(buttonFavoritar).toBeInTheDocument();
+
+    expect(buttonFavoritar).toHaveAttribute('src', whiteHeartIcon);
+    userEvent.click(buttonFavoritar);
+    expect(buttonFavoritar).toBeTruthy();
+  });
+
   test('Testa se há dois botões na tela', async () => {
+    localStorage.clear();
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathDrinksId);
@@ -136,8 +185,15 @@ describe('Testes da tela de Recipes in procress de drinks', () => {
     userEvent.click(buttonCompartilhar);
     expect(await screen.findByText(/Link copied/i)).toBeInTheDocument();
 
-    const buttonFavoritar = await screen.findByTestId('favorite-btn');
+    const buttonFavoritar = await screen.findByTestId(favoriteBtn);
     expect(buttonFavoritar).toBeInTheDocument();
+    expect(buttonFavoritar).toHaveAttribute('src', whiteHeartIcon);
+    userEvent.click(buttonFavoritar);
+    expect(buttonFavoritar).toHaveAttribute('src', blackHeartIcon);
+
+    userEvent.click(buttonFavoritar);
+
+    // expect(buttonFavoritar).toHaveAttribute('src', whiteHeartIcon);
   });
 
   test('Testa se há instruções sendo renderizado na tela', async () => {

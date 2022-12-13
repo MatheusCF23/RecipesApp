@@ -87,17 +87,17 @@ export default function MealsProgress() {
     setIsChecked(updatedCheckedState);
   };
 
-  const saveFav = (elemento) => {
+  const saveFav = (e) => {
     if (!localStorage.favoriteRecipes) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     }
-    const ID = elemento.idMeal || elemento.idDrink;
-    const type = elemento.idMeal ? 'meal' : 'drink';
-    const nationality = elemento.strArea || '';
-    const category = elemento.strCategory || '';
-    const alcoholicOrNot = elemento.strAlcoholic || '';
-    const name = elemento.strDrink || elemento.strMeal;
-    const image = elemento.strDrinkThumb || elemento.strMealThumb;
+    const ID = e.idMeal || e.idDrink;
+    const type = e.idMeal ? 'meal' : 'drink';
+    const nationality = e.strArea || '';
+    const category = e.strCategory || '';
+    const alcoholicOrNot = e.strAlcoholic || '';
+    const name = e.strDrink || e.strMeal;
+    const image = e.strDrinkThumb || e.strMealThumb;
     const save = JSON.parse(localStorage.favoriteRecipes);
     const newData = { id: ID,
       type,
@@ -139,7 +139,7 @@ export default function MealsProgress() {
           <button
             type="button"
             onClick={ (() => {
-              if (!isFavorite) { saveFav(elemento); }
+              if (!isFavorite) { saveFav(e); }
               if (isFavorite) { removeFavorite(); }
               setIsFavorite(!isFavorite);
             }

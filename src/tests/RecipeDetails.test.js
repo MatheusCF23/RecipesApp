@@ -11,16 +11,6 @@ const pathDrinksId = '/drinks/15997';
 
 describe('Testes da tela de Recipes Details de Meals', () => {
   test('Testa se há o texto Recipes Details na tela', () => {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([{
-      alcoholicOrNot: '',
-      category: 'Side',
-      id: '52977',
-      image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
-      name: 'Corba',
-      nationality: 'Turkish',
-      type: 'meal',
-    }]));
-
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathMealsId);
@@ -42,6 +32,15 @@ describe('Testes da tela de Recipes Details de Meals', () => {
   });
 
   test('Testa se há um icone de copiar e um de favoritar na tela de Meals', async () => {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([{
+      alcoholicOrNot: '',
+      category: 'Side',
+      id: '52977',
+      image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+      name: 'Corba',
+      nationality: 'Turkish',
+      type: 'meal',
+    }]));
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathMealsId);
@@ -98,7 +97,7 @@ describe('Testes da tela de Recipes Details de Meals', () => {
     act(() => {
       history.push(pathMealsId);
     });
-    const instrucao = await screen.findByText(/Instruções/i);
+    const instrucao = await screen.findByTestId('instructions');
     expect(instrucao).toBeInTheDocument();
   });
 
@@ -147,6 +146,15 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
   });
 
   test('Testa se há um icone  de copiar e um de favoritar na tela de Drinks, sendo o mesmo clicável', async () => {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([{
+      alcoholicOrNot: 'Optional alcohol',
+      category: 'Ordinary Drink',
+      id: '15997',
+      image: 'https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg',
+      name: 'GG',
+      nationality: '',
+      type: 'drink',
+    }]));
     const { history } = renderWithRouter(<AppProvider><App /></AppProvider>);
     act(() => {
       history.push(pathDrinksId);
@@ -159,7 +167,7 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
     const iconFavorite = await screen.findByTestId('favorite-btn');
     expect(iconFavorite).toBeInTheDocument();
     userEvent.click(iconFavorite);
-    expect(iconFavorite).toHaveAttribute('src', 'blackHeartIcon.svg');
+    expect(iconFavorite).toHaveAttribute('src', 'whiteHeartIcon.svg');
   });
 
   test('Testa se há uma imagem na tela', async () => {
@@ -185,7 +193,7 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
     act(() => {
       history.push(pathDrinksId);
     });
-    const ingredient = await screen.findAllByText('Galliano - 2 1/2 shots');
+    const ingredient = await screen.findByTestId('0-ingredient-name-and-measure');
     expect(ingredient).toBeInTheDocument();
   });
 
@@ -203,7 +211,7 @@ describe('Testes da tela de Recipes Details de Drinks', () => {
     act(() => {
       history.push(pathDrinksId);
     });
-    const instrucao = await screen.findByText(/Instruções/i);
+    const instrucao = await screen.findByTestId('instructions');
     expect(instrucao).toBeInTheDocument();
   });
 

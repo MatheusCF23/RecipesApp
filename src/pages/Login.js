@@ -27,37 +27,47 @@ export default function Login() {
   }
 
   return (
-    <form>
-      <label htmlFor="email-input">
-        Email:
-        <input
-          type="email"
-          id="email-input"
-          data-testid="email-input"
-          value={ email }
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-      </label>
-
-      <label htmlFor="password-input">
-        Senha:
-        <input
-          type="password"
-          id="password-input"
-          data-testid="password-input"
-          value={ password }
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
-      </label>
-
-      <button
-        type="submit"
-        data-testid="login-submit-btn"
-        disabled={ !(validateEmail() && validatePassword()) }
-        onClick={ (event) => handleLogin(event) }
-      >
-        Enter
-      </button>
-    </form>
+    <div className="box">
+      <form>
+        <div className="inputBox">
+          <label htmlFor="email-input" className="form-label">
+            Email:
+            <input
+              className="form-control"
+              type="email"
+              id="email-input"
+              data-testid="email-input"
+              value={ email }
+              onChange={ ({ target }) => setEmail(target.value) }
+            />
+          </label>
+        </div>
+        <div className="inputBox">
+          <label htmlFor="password-input" className="form-label">
+            Senha:
+            <input
+              className="form-control"
+              type="password"
+              id="password-input"
+              data-testid="password-input"
+              value={ password }
+              onChange={ ({ target }) => setPassword(target.value) }
+            />
+          </label>
+        </div>
+        <br />
+        <div className="inputBox">
+          <button
+            className="btn btn-primary"
+            type="submit"
+            data-testid="login-submit-btn"
+            disabled={ !(validateEmail() && validatePassword()) }
+            onClick={ (event) => handleLogin(event) }
+          >
+            Enter
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

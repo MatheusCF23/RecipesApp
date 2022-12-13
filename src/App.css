@@ -1,40 +1,79 @@
-.headerIcons {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  top: 0;
+/* @media (min-width: 480px) { */
+ .headerIcons {
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   top: 0;
+   width: 100%;
+ }
+
+ .footer {
+   align-items: center;
+   bottom: 0;
+   display: flex;
+   height: 100px;
+   justify-content: center;
+   line-height: 100px;
+   position: fixed;
+   width: 100%;
+ }
+
+ .recommendation {
+   background-color: #333;
+   display: flex;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   white-space: nowrap;
+ }
+
+ .startbtn {
+   bottom: 0;
+   position: fixed;
+ }
+
+ .checkbox {
+   text-decoration: line-through solid black;
+ }
+
+ .finish-btn {
+   bottom: 0;
+   position: fixed;
+ }
+
+ /* body {
+   background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-fresh-fruit-and-vegetable-breakfast-food-image_30144.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   font-family: sans-serif;
+   margin: 0;
+   padding: 0;
+ }
+
+ .box {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-sizing:border-box;
+  box-shadow: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  position: absolute;
+  color: white;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+ }
+
+ .box .inputBox input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  outline: none;
+  position: relative;
+  padding: 10px 0;
   width: 100%;
-}
-
-.footer {
-  align-items: center;
-  bottom: 0;
-  display: flex;
-  height: 100px;
-  justify-content: center;
-  line-height: 100px;
-  position: fixed;
-  width: 100%;
-}
-
-.recommendation {
-  background-color: #333;
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-}
-
-.startbtn {
-  bottom: 0;
-  position: fixed;
-}
-
-.checkbox {
-  text-decoration: line-through solid black;
-}
-
-.finish-btn {
-  bottom: 0;
-  position: fixed;
-}
+ } */
+/* } */

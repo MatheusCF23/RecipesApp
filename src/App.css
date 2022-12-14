@@ -5,7 +5,7 @@
   justify-content: center;
   top: 0;
   width: 100%;
- }
+}
 
 .footer {
   align-items: center;
@@ -40,7 +40,7 @@
   position: fixed;
 }
 
- /* body {
+/* body {
    background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-fresh-fruit-and-vegetable-breakfast-food-image_30144.jpg');
    background-repeat: no-repeat;
    background-size: cover;

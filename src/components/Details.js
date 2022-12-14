@@ -98,7 +98,15 @@ export default function Details(props) {
   if (history.location.pathname.includes(`/drinks/${recipe.idDrink}`)) {
     return (
       <>
+        <img
+          src={ recipe.strDrinkThumb }
+          alt={ recipe.strDrink }
+          data-testid="recipe-photo"
+          style={ { height: '250px', width: '250px', borderRadius: '5px' } }
+        />
+        <br />
         <button
+          className="btn btn-primary"
           type="button"
           onClick={ () => history.push('/drinks') }
         >
@@ -109,6 +117,7 @@ export default function Details(props) {
         {copied && (<p> Link copied! </p>)}
 
         <input
+          className="icon"
           type="image"
           src={ shareIcon }
           alt="Compartilhar"
@@ -117,22 +126,17 @@ export default function Details(props) {
         />
 
         <input
+          className="icon"
           type="image"
           src={ favorited ? blackHeartIcon : whiteHeartIcon }
           alt="favoritar"
           data-testid="favorite-btn"
           onClick={ (event) => handleFavDrink(event) }
         />
-
         <div>
-
-          <img
-            src={ recipe.strDrinkThumb }
-            alt={ recipe.strDrink }
-            data-testid="recipe-photo"
-          />
           <h2
             data-testid="recipe-title"
+            className="titleRecipe"
           >
             {recipe.strDrink}
           </h2>
@@ -141,11 +145,9 @@ export default function Details(props) {
           >
             {recipe.strAlcoholic}
           </h3>
-
           <ul>
             {recipeListItems(recipe)}
           </ul>
-
           <div>
             <h4> Instruções </h4>
             <span
@@ -163,16 +165,24 @@ export default function Details(props) {
     const video = youtubeManager(recipe.strYoutube);
     return (
       <>
+        <img
+          src={ recipe.strMealThumb }
+          alt={ recipe.strMeal }
+          data-testid="recipe-photo"
+          style={ { height: '250px', width: '250px', borderRadius: '5px' } }
+        />
+        <br />
         <button
+          className="btn btn-primary"
           type="button"
           onClick={ () => history.push('/meals') }
         >
           Voltar
 
         </button>
-
         {copied && (<small> Link copied! </small>)}
         <input
+          className="icon"
           type="image"
           src={ shareIcon }
           alt="Compartilhar"
@@ -181,21 +191,17 @@ export default function Details(props) {
         />
 
         <input
+          className="icon"
           type="image"
           src={ favorited ? blackHeartIcon : whiteHeartIcon }
           alt="favoritar"
           data-testid="favorite-btn"
           onClick={ (event) => handleFavMeals(event) }
         />
-
         <div>
-          <img
-            src={ recipe.strMealThumb }
-            alt={ recipe.strMeal }
-            data-testid="recipe-photo"
-          />
           <h2
             data-testid="recipe-title"
+            className="titleRecipe"
           >
             {recipe.strMeal}
           </h2>
@@ -204,11 +210,9 @@ export default function Details(props) {
           >
             {recipe.strCategory}
           </h3>
-
           <ul>
             {recipeListItems(recipe)}
           </ul>
-
           <div>
             <iframe
               title="Instructions video"

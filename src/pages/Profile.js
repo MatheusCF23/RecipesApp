@@ -20,6 +20,7 @@ export default function Profile() {
           {email}
         </p>
         <button
+          className="btn btn-primary icon"
           type="button"
           data-testid="profile-done-btn"
           onClick={ () => history.push('/done-recipes') }
@@ -27,6 +28,7 @@ export default function Profile() {
           Done Recipes
         </button>
         <button
+          className="btn btn-primary icon"
           type="button"
           data-testid="profile-favorite-btn"
           onClick={ () => history.push('/favorite-recipes') }
@@ -34,6 +36,7 @@ export default function Profile() {
           Favorite Recipes
         </button>
         <button
+          className="btn btn-primary icon"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ () => buttonRemove() }

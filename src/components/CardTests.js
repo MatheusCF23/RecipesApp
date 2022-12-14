@@ -21,6 +21,7 @@ export default function CardTests(props) {
             src={ `${recipe.strMealThumb}/preview` }
             alt={ recipe.idMeal }
             data-testid={ `${index}-card-img` }
+            style={ { height: '200px', width: '200px', borderRadius: '5px' } }
           />
         </div>
       </Link>
@@ -44,6 +45,7 @@ export default function CardTests(props) {
             src={ `${recipe.strDrinkThumb}/preview` }
             alt={ recipe.idDrink }
             data-testid={ `${index}-card-img` }
+            style={ { height: '200px', width: '200px', borderRadius: '5px' } }
           />
         </div>
       </Link>

@@ -100,6 +100,7 @@ export default function FilterCategoryButtons() {
         .slice(0, maxNumberOfButtons)
         .map(({ strCategory }) => (
           <button
+            className="btn btn-primary icon"
             key={ `${strCategory}-button` }
             type="button"
             name={ strCategory }
@@ -110,6 +111,7 @@ export default function FilterCategoryButtons() {
           </button>
         ))}
       <button
+        className="btn btn-primary icon"
         type="button"
         data-testid="All-category-filter"
         onClick={ () => resetCategory() }

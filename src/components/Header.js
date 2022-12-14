@@ -10,11 +10,12 @@ export default function Header() {
   const [toggleSearch, setToggleSearch] = useState(false);
   return (
     <header>
-      <div className="headerIcons">
 
+      <div className="headerIcons">
         {(history.location.pathname === '/meals'
         || history.location.pathname === '/drinks')
         && (
+
           <input
             type="image"
             src={ searchIcon }
@@ -36,7 +37,7 @@ export default function Header() {
 
       <br />
 
-      <h1 data-testid="page-title">
+      <h1 className="titleHeader" data-testid="page-title">
         { pageTitleManager(history.location.pathname) }
       </h1>
 

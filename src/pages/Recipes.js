@@ -37,11 +37,13 @@ export default function Recipes() {
     <>
       <Header />
       <FilterCategoryButtons />
-      {API
-        .slice(0, maxNumberOf)
-        .map((recipe, index) => (
-          <CardTests key={ index } recipe={ recipe } index={ index } />
-        ))}
+      <div className="cardTests">
+        {API
+          .slice(0, maxNumberOf)
+          .map((recipe, index) => (
+            <CardTests key={ index } recipe={ recipe } index={ index } />
+          ))}
+      </div>
       <Footer />
     </>
   );

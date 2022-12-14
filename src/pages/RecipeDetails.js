@@ -98,7 +98,7 @@ export default function RecipesDetails() {
         { cardRecom() }
       </div>
       <button
-        className="startbtn"
+        className="startbtn btn btn-primary"
         type="button"
         data-testid="start-recipe-btn"
         onClick={ () => history.push(`${history.location.pathname}/in-progress`) }

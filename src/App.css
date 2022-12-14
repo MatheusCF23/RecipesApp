@@ -1,11 +1,42 @@
-/* @media (min-width: 480px) { */
+/* header {
+  background-color: rgba(236, 65, 65, 0.8);
+  border-radius: 10px;
+  box-sizing:border-box;
+  box-shadow: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  color: white;
+  width: 100%;
+}  */
+
 .headerIcons {
   align-items: center;
+  background-color: rgba(97, 83, 83, 0.8);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5);
+  box-sizing:border-box;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   justify-content: center;
+  padding-top: 5px;
   top: 0;
   width: 100%;
 }
+
+.titleHeader {
+  padding-top: 10px;
+}
+
+/* .textH3App {
+  display: flex; 
+  justify-content: start; 
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+} */ 
 
 .footer {
   align-items: center;
@@ -19,7 +50,8 @@
 }
 
 .recommendation {
-  background-color: #333;
+  background-color: rgb(102, 89, 89);
+  color: white;
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -40,39 +72,74 @@
   position: fixed;
 }
 
-/* body {
-   background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-fresh-fruit-and-vegetable-breakfast-food-image_30144.jpg');
-   background-repeat: no-repeat;
-   background-size: cover;
-   font-family: sans-serif;
-   margin: 0;
-   padding: 0;
- }
+body {
+  background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-fresh-fruit-and-vegetable-breakfast-food-image_30144.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 10px;
+}
 
- .box {
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 10px;
-  box-sizing:border-box;
-  box-shadow: rgba(0, 0, 0, 0.5);
-  left: 50%;
-  position: absolute;
-  color: white;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  padding: 40px;
- }
+.box {
+ background-color: rgba(0, 0, 0, 0.8);
+ border-radius: 10px;
+ box-shadow: rgba(0, 0, 0, 0.5);
+ box-sizing:border-box;
+ color: white;
+ left: 50%;
+ position: absolute;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ width: 400px;
+ padding: 40px;
+}
 
- .box .inputBox input {
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid white;
-  color: white;
-  font-size: 16px;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-  outline: none;
-  position: relative;
-  padding: 10px 0;
-  width: 100%;
- } */
+.box .inputBox input {
+ background-color: transparent;
+ border: none;
+ border-bottom: 1px solid white;
+ color: white;
+ font-size: 16px;
+ letter-spacing: 2px;
+ margin-bottom: 30px;
+ outline: none;
+ position: relative;
+ padding: 10px 0;
+ width: 100%;
+}
+
+.cardTests {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex-direction: column;
+  justify-content: center;
+}
+
+a:link {
+  align-items: center;
+  color: black;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+h1 {
+  padding: 10px;
+}
+
+.icon {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.titleRecipe {
+  margin-top: 10px;
+}

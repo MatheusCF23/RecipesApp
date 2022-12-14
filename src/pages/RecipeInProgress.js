@@ -122,7 +122,15 @@ export default function MealsProgress() {
     <div>
       { fetchALL.map((e) => (
         <div key={ e.idMeal || e.idDrink }>
+          <img
+            data-testid="recipe-photo"
+            src={ e.strMealThumb || e.strDrinkThumb }
+            alt={ e.strMeal || e.strDrink }
+            style={ { heigth: '250px', width: '250px', borderRadius: '5px' } }
+          />
+          <br />
           <button
+            className="btn btn-primary icon"
             data-testid="share-btn"
             type="button"
             onClick={ () => {
@@ -137,6 +145,7 @@ export default function MealsProgress() {
           </button>
           {isCopy && <p>Link copied!</p>}
           <button
+            className="btn btn-primary icon"
             type="button"
             onClick={ (() => {
               if (!isFavorite) { saveFav(e); }
@@ -153,11 +162,6 @@ export default function MealsProgress() {
               alt="favorites"
             />
           </button>
-          <img
-            data-testid="recipe-photo"
-            src={ e.strMealThumb || e.strDrinkThumb }
-            alt={ e.strMeal || e.strDrink }
-          />
           <h2 data-testid="recipe-title">{e.strMeal || e.strDrink}</h2>
           <h3 data-testid="recipe-category">{e.strCategory}</h3>
           { ingredients.map((elem, index) => (
@@ -180,6 +184,7 @@ export default function MealsProgress() {
           ))}
           <p data-testid="instructions">{ e.strInstructions }</p>
           <button
+            className="btn btn-primary"
             data-testid="finish-recipe-btn"
             type="button"
             disabled={ isDisabled }

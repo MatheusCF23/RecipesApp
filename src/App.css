@@ -16,10 +16,9 @@
   background-color: rgba(97, 83, 83, 0.8);
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.5);
-  box-sizing:border-box;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   justify-content: center;
   padding-top: 5px;
   top: 0;
@@ -29,14 +28,6 @@
 .titleHeader {
   padding-top: 10px;
 }
-
-/* .textH3App {
-  display: flex; 
-  justify-content: start; 
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-} */ 
 
 .footer {
   align-items: center;
@@ -82,39 +73,39 @@ body {
 }
 
 .box {
- background-color: rgba(0, 0, 0, 0.8);
- border-radius: 10px;
- box-shadow: rgba(0, 0, 0, 0.5);
- box-sizing:border-box;
- color: white;
- left: 50%;
- position: absolute;
- top: 50%;
- transform: translate(-50%, -50%);
- width: 400px;
- padding: 40px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  color: white;
+  left: 50%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
 }
 
 .box .inputBox input {
- background-color: transparent;
- border: none;
- border-bottom: 1px solid white;
- color: white;
- font-size: 16px;
- letter-spacing: 2px;
- margin-bottom: 30px;
- outline: none;
- position: relative;
- padding: 10px 0;
- width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  outline: none;
+  padding: 10px 0;
+  position: relative;
+  width: 100%;
 }
 
 .cardTests {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   flex-direction: column;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
 }
 
